@@ -19,3 +19,13 @@ const compose = (...fns) => v => (
 const abc = compose(addA, addB, addC);
 console.log(abc()); // "abc"
 
+const pipe = (...fns) => (x) =>
+  fns.reduce((acc, fn) => fn(acc), x);
+
+const add = (x) => x + 2;
+const multiply = (x) => x * 3;
+
+const addAndMultiply = pipe(add, multiply);
+
+console.log(addAndMultiply(2)); // (2 + 2) * 3 = 12
+
